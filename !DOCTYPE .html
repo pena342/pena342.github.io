@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100 Datos Curiosos de Enfermedades</title>
+    <style>
+        body {font-family: Arial, sans-serif; background: #667eea; padding: 20px; margin: 0;}
+      .container {max-width: 900px; margin: 0 auto; background: white; border-radius: 15px; padding: 25px;}
+        h1 {text-align: center; color: #667eea; margin: 0 0 10px 0;}
+      .subtitle {text-align: center; color: #666; margin-bottom: 25px;}
+      .buttons {text-align: center; margin-bottom: 20px;}
+        button {
+            padding: 15px 30px; font-size: 16px; margin: 5px; border: none;
+            border-radius: 8px; cursor: pointer; font-weight: bold; color: white;
+        }
+      .btn-random {background: #667eea;}
+      .btn-list {background: #48bb78;}
+        #searchBox {
+            width: 100%; padding: 12px; font-size: 16px; border: 2px solid #ddd;
+            border-radius: 8px; margin-bottom: 15px; display: none; box-sizing: border-box;
+        }
+      .fact-display {
+            background: #f0f4f8; padding: 20px; border-radius: 10px; margin: 15px 0;
+            border-left: 5px solid #667eea; min-height: 60px; text-align: center; font-size: 17px;
+        }
+      .fact-list {margin-top: 20px; max-height: 500px; overflow-y: auto; display: none;}
+      .fact-item {
+            background: #f8f9fa; padding: 15px; margin-bottom: 10px; border-radius: 8px;
+            border-left: 4px solid #48bb78;
+        }
+      .fact-number {color: #667eea; font-weight: bold; margin-right: 8px;}
+      .counter {text-align: center; margin: 10px 0; color: #666; font-size: 14px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> 100 Datos Curiosos de Enfermedades</h1>
+        <p class="subtitle">Descubre información sorprendente sobre el mundo de la medicina</p>
+        
+        <div class="buttons">
+            <button type="button" class="btn-random" id="btnAzar"> Dato al Azar</button>
+            <button type="button" class="btn-list" id="btnLista"> Ver todos los datos</button>
+        </div>
+
+        <input type="text" id="searchBox" placeholder=" Buscar dato... Ej: corazón, genética, virus">
+        
+        <div class="fact-display" id="factDisplay">Presiona "Dato al Azar" para comenzar </div>
+        <div class="fact-list" id="factList"></div>
+        <div class="counter" id="counter"></div>
+    </div>
+
+<script type="text/javascript">
+window.onload = function() {
+    var datos = [
+        "La gripe española de 1918 mató a más personas que la Primera Guerra Mundial.",
+        "El síndrome de Cotard hace que la persona crea que está muerta o que no existe.",
+        "La anemia falciforme es causada por solo una letra mal en el ADN.",
+        "El resfriado común puede ser causado por más de 200 virus diferentes.",
+        "La fibromialgia afecta más a mujeres que a hombres, en proporción 9 a 1.",
+        "El albinismo no solo afecta la piel, también puede causar problemas de visión.",
+        "La peste negra mató al 60% de la población europea en el siglo XIV.",
+        "El síndrome de Down es la trisomía más común en humanos: cromosoma 21 extra.",
+        "La rabia tiene una tasa de mortalidad del 99.9% una vez que aparecen síntomas.",
+        "El daltonismo afecta a 1 de cada 12 hombres pero solo 1 de cada 200 mujeres.",
+        "La hemofilia se conocía como 'enfermedad real' porque afectó a familias reales europeas.",
+        "El síndrome de Tourette no siempre incluye decir groserías, solo el 10% lo hace.",
+        "La lepra es una de las enfermedades más antiguas registradas, con 4000 años.",
+        "El vitíligo causa pérdida de pigmento en la piel pero no es contagioso ni mortal.",
+        "La enfermedad de Alzheimer fue descrita por primera vez en 1906 por Alois Alzheimer.",
+        "El síndrome de Turner solo afecta a mujeres y se debe a tener un solo cromosoma X.",
+        "La malaria mata a más de 400,000 personas al año, principalmente niños en África.",
+        "El cáncer no es una sola enfermedad, sino más de 100 tipos diferentes.",
+        "La diabetes tipo 1 es autoinmune: el cuerpo ataca sus propias células del páncreas.",
+        "El síndrome de Klinefelter afecta a hombres que nacen con un cromosoma X extra: XXY.",
+        "La viruela fue la primera enfermedad erradicada del planeta gracias a vacunas en 1980.",
+        "El insomnio fatal familiar es una enfermedad genética que causa muerte por no poder dormir.",
+        "La enfermedad de Crohn puede afectar cualquier parte del tracto digestivo.",
+        "El síndrome de Marfan causaba que Abraham Lincoln tuviera extremidades muy largas.",
+        "La poliomielitis fue casi erradicada: quedan menos de 100 casos al año en el mundo.",
+        "El lupus hace que el sistema inmune ataque tejidos sanos del cuerpo.",
+        "La fenilcetonuria se detecta con la prueba del talón en recién nacidos.",
+        "El síndrome de Prader-Willi causa hambre insaciable y obesidad desde la infancia.",
+        "La enfermedad de Alzheimer fue descrita por primera vez en 1906 por Alois Alzheimer.",
+        "El síndrome de Turner solo afecta a mujeres y se debe a tener un solo cromosoma X.",
+        "La malaria mata a más de 400,000 personas al año, principalmente niños en África.",
+        "El cáncer no es una sola enfermedad, sino más de 100 tipos diferentes.",
+        "La diabetes tipo 1 es autoinmune: el cuerpo ataca sus propias células del páncreas.",
+        "El síndrome de Klinefelter afecta a hombres que nacen con un cromosoma X extra: XXY.",
+        "La viruela fue la primera enfermedad erradicada del planeta gracias a vacunas en 1980.",
+        "El insomnio fatal familiar es una enfermedad genética que causa muerte por no poder dormir.",
+        "La enfermedad de Crohn puede afectar cualquier parte del tracto digestivo.",
+        "El síndrome de Marfan causaba que Abraham Lincoln tuviera extremidades muy largas.",
+        "La poliomielitis fue casi erradicada: quedan menos de 100 casos al año en el mundo.",
+        "El lupus hace que el sistema inmune ataque tejidos sanos del cuerpo.",
+        "La fenilcetonuria se detecta con la prueba del talón en recién nacidos.",
+        "El síndrome de Prader-Willi causa hambre insaciable y obesidad desde la infancia.",
+        "La enfermedad de Huntington es 100% hereditaria si tienes el gen mutado.",
+        "El escorbuto, causado por falta de vitamina C, mataba a marineros en viajes largos.",
+        "La acondroplasia es la causa más común de enanismo, 1 de cada 25,000 nacimientos.",
+        "El síndrome del acento extranjero puede aparecer después de daño cerebral.",
+        "La enfermedad de Parkinson fue descrita como 'parálisis agitante' en 1817.",
+        "El síndrome de Rett afecta casi exclusivamente a niñas y causa regresión del desarrollo.",
+        "La talasemia es común en países del Mediterráneo, de ahí su nombre 'mar de talasa'.",
+        "El síndrome de Guillain-Barré puede causar parálisis temporal tras una infección.",
+        "La esclerosis múltiple ataca la mielina, el 'aislante' de las neuronas.",
+        "El síndrome de Williams causa personalidad muy sociable y amigable.",
+        "La enfermedad celíaca no es alergia al gluten, es una respuesta autoinmune.",
+        "El síndrome de Proteus causa crecimiento excesivo de huesos y piel. Inspiró 'El Hombre Elefante'.",
+        "La varicela puede reactivarse años después como herpes zóster o culebrilla.",
+        "El síndrome de Patau, trisomía 13, es incompatible con la vida en 90% de casos.",
+        "La distrofia muscular de Duchenne afecta casi solo a niños varones.",
+        "El síndrome de Angelman causa risa frecuente y felicidad aparente constante.",
+        "La tuberculosis mató a 1.5 millones de personas en 2020, pese a tener cura.",
+        "El síndrome de X frágil es la causa hereditaria más común de discapacidad intelectual.",
+        "La enfermedad de Graves es la causa más común de hipertiroidismo.",
+        "El síndrome de Ehlers-Danlos causa piel muy elástica y articulaciones hiperlaxas.",
+        "La meningitis bacteriana puede matar en menos de 24 horas si no se trata.",
+        "El síndrome de Poland causa ausencia del músculo pectoral de un lado del cuerpo.",
+        "La enfermedad de Addison fue la que mató a John F. Kennedy Jr si no se trataba.",
+        "El síndrome de Moebius causa parálisis facial: las personas no pueden sonreír.",
+        "La fiebre amarilla mató a miles durante la construcción del Canal de Panamá.",
+        "El síndrome de Cri du Chat hace que bebés lloren con sonido similar a maullido de gato.",
+        "La enfermedad de Lyme se transmite por garrapatas y causa el 'eritema migratorio'.",
+        "El síndrome de Stendhal causa mareos al ver arte muy hermoso.",
+        "La osteoporosis es llamada 'enfermedad silenciosa' porque no da síntomas hasta fracturas.",
+        "El síndrome de Estocolmo no está en el DSM-5, no es diagnóstico oficial.",
+        "La enfermedad de Chagas afecta a 6 millones de personas, principalmente en Latinoamérica.",
+        "El síndrome de Münchausen hace que personas finjan estar enfermas para recibir atención.",
+        "La gota era llamada 'enfermedad de reyes' por asociarse con dietas ricas en carne.",
+        "El síndrome de Apert causa fusión prematura de huesos del cráneo y dedos.",
+        "La enfermedad de Kawasaki es la causa principal de enfermedad cardíaca adquirida en niños.",
+        "El síndrome de Lesch-Nyhan causa automutilación compulsiva por mutación genética.",
+        "La fiebre del dengue puede convertirse en dengue hemorrágico, que es mortal.",
+        "El síndrome de Cushing es causado por exceso de cortisol, la hormona del estrés.",
+        "La enfermedad de Pompe es un trastorno de almacenamiento de glucógeno en músculos.",
+        "El síndrome de Reye en niños se asocia con dar aspirina durante infecciones virales.",
+        "La enfermedad de Wilson causa acumulación de cobre en hígado y cerebro.",
+        "El síndrome de Capgras hace creer que familiares fueron reemplazados por impostores.",
+        "La enfermedad de Buerger afecta fumadores y puede causar amputación de extremidades.",
+        "El síndrome de Kleine-Levin causa episodios de sueño excesivo de días o semanas.",
+        "La enfermedad de Fabry causa dolor quemante en manos y pies por falta de una enzima.",
+        "El síndrome de la mano ajena hace que una mano actúe sin control consciente.",
+        "La enfermedad de Gaucher es el trastorno de almacenamiento lisosomal más común.",
+        "El síndrome de Fregoli hace creer que diferentes personas son en realidad una sola disfrazada.",
+        "La enfermedad de McArdle causa calambres severos al hacer ejercicio por falta de energía muscular.",
+        "El síndrome de Alicia en el País de las Maravillas distorsiona la percepción del tamaño.",
+        "La enfermedad de Niemann-Pick causa acumulación fatal de lípidos en órganos.",
+        "El síndrome de Jerusalén afecta a turistas que visitan la ciudad y desarrollan delirios religiosos.",
+        "La enfermedad de Canavan destruye la materia blanca del cerebro en bebés.",
+        "El síndrome de la cabeza explosiva causa escuchar ruidos fuertes al dormirse, pero es inofensivo.",
+        "La enfermedad de Tay-Sachs es más común en judíos asquenazíes y es mortal en infancia.",
+        "El síndrome de París afecta principalmente a turistas japoneses por shock cultural.",
+        "La enfermedad de Hartnup impide absorber ciertos aminoácidos y causa erupciones por el sol.",
+        "El síndrome de Ekbom hace sentir que insectos caminan bajo la piel.",
+        "La enfermedad de Von Willebrand es el trastorno de coagulación hereditario más común.",
+        "El síndrome de Diógenes causa acumulación extrema y descuido personal en ancianos.",
+        "La enfermedad de Raynaud hace que dedos se pongan blancos/azules con el frío.",
+        "El síndrome de Ondina causa 'maldición de Ondina': dejas de respirar al dormir.",
+        "La enfermedad de Menière causa vértigo, tinnitus y pérdida auditiva por problema del oído interno.",
+        "El síndrome de Savant da habilidades prodigiosas en memoria o cálculo a personas con autismo.",
+        "La enfermedad de Dupuytren causa que los dedos se doblen hacia la palma permanentemente.",
+        "El síndrome de Clérambault es delirio de amor: creer que alguien famoso te ama.",
+        "La enfermedad de Peyronie causa curvatura anormal del pene por placas fibrosas.",
+        "El síndrome de Cotard extremo hace que pacientes pidan ser enterrados porque 'ya están muertos'.",
+        "La enfermedad de Hashimoto es la causa más común de hipotiroidismo.",
+        "El síndrome de Proteo es tan raro que solo hay 200 casos documentados en la historia.",
+        "La enfermedad de Still del adulto es una forma rara de artritis que causa fiebre alta.",
+        "El síndrome de Waardenburg causa mechón blanco, ojos de diferente color y sordera.",
+        "La enfermedad de Behçet causa úlceras dolorosas en boca y genitales.",
+        "El síndrome de la persona rígida causa espasmos musculares que pueden romper huesos.",
+        "La enfermedad de Castleman hace que ganglios linfáticos crezcan como tumores benignos.",
+        "El síndrome de Hermansky-Pudlak causa albinismo, problemas de coagulación y fibrosis pulmonar."
+    ];
+
+    var listaVisible = false;
+
+    document.getElementById('btnAzar').onclick = function() {
+        var randomIndex = Math.floor(Math.random() * datos.length);
+        document.getElementById('factDisplay').innerHTML = '<strong>Dato #' + (randomIndex + 1) + ':</strong> ' + datos[randomIndex];
+        document.getElementById('factList').style.display = 'none';
+        document.getElementById('searchBox').style.display = 'none';
+        document.getElementById('counter').textContent = '';
+        listaVisible = false;
+    };
+
+    document.getElementById('btnLista').onclick = function() {
+        var factList = document.getElementById('factList');
+        var searchBox = document.getElementById('searchBox');
+        listaVisible =!listaVisible;
+        
+        if (listaVisible) {
+            factList.innerHTML = '';
+            factList.style.display = 'block';
+            for(var i = 0; i < datos.length; i++) {
+                var item = document.createElement('div');
+                item.className = 'fact-item';
+                item.innerHTML = '<span class="fact-number">#' + (i + 1) + '</span>' + datos[i];
+                factList.appendChild(item);
+            }
+            document.getElementById('counter').textContent = 'Mostrando ' + datos.length + ' datos';
+            searchBox.style.display = 'block';
+        } else {
+            factList.style.display = 'none';
+            searchBox.style.display = 'none';
+            document.getElementById('counter').textContent = '';
+        }
+    };
+
+    document.getElementById('searchBox').onkeyup = function() {
+        var searchTerm = this.value.toLowerCase();
+        var factList = document.getElementById('factList');
+        factList.innerHTML = '';
+        
+        var contador = 0;
+        for(var i = 0; i < datos.length; i++) {
+            if(datos[i].toLowerCase().indexOf(searchTerm)!== -1 || (i + 1).toString().indexOf(searchTerm)!== -1) {
+                var item = document.createElement('div');
+                item.className = 'fact-item';
+                item.innerHTML = '<span class="fact-number">#' + (i + 1) + '</span>' + datos[i];
+                factList.appendChild(item);
+                contador++;
+            }
+        }
+        document.getElementById('counter').textContent = 'Mostrando ' + contador + ' de ' + datos.length + ' datos';
+    };
+};
+</script>
+</body>
+</html>
+
